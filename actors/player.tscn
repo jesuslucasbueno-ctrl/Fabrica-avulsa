@@ -1,15 +1,58 @@
 [gd_scene format=3 uid="uid://cdmmcg6lk30x"]
 
 [ext_resource type="Script" uid="uid://bf88auwh6udch" path="res://scripts/player.gd" id="1_kjkj0"]
+[ext_resource type="Texture2D" uid="uid://ciwonougkr4pm" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/hurt/hurt-1.png" id="2_j4d0e"]
 [ext_resource type="Texture2D" uid="uid://dxs65iliq4i63" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/idle/idle-1.png" id="2_tue77"]
 [ext_resource type="Texture2D" uid="uid://rswvl8pdewad" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/idle/idle-2.png" id="3_33vod"]
+[ext_resource type="Texture2D" uid="uid://g3w5mavax0vm" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/hurt/hurt-2.png" id="3_nx85l"]
 [ext_resource type="Texture2D" uid="uid://cbo613di08dag" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/idle/idle-3.png" id="4_er1rk"]
 [ext_resource type="Texture2D" uid="uid://bc68fpy1ip63g" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/idle/idle-4.png" id="5_e7yfm"]
+[ext_resource type="Texture2D" uid="uid://baqpd5lavdsn5" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/jump/jump-1.png" id="8_wiuo3"]
+[ext_resource type="Texture2D" uid="uid://cd38oyb1uqpve" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/jump/jump-2.png" id="9_0a7mf"]
+[ext_resource type="Texture2D" uid="uid://ud6yesvds5rs" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/jump/jump-3.png" id="10_2li2m"]
+[ext_resource type="Texture2D" uid="uid://ntihq2plnrg7" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/jump/jump-4.png" id="11_no1er"]
+[ext_resource type="Texture2D" uid="uid://djr6fblxlxw3x" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/jump/jump-5.png" id="12_373hh"]
+[ext_resource type="Texture2D" uid="uid://bqa0st202as5g" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-1.png" id="13_rpkd1"]
+[ext_resource type="Texture2D" uid="uid://dysi0teppmrqs" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-2.png" id="14_1v7bv"]
+[ext_resource type="Texture2D" uid="uid://dfeqbubmnrlnt" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-3.png" id="15_1vet3"]
+[ext_resource type="Texture2D" uid="uid://cm4u1q15tdjlx" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-4.png" id="16_wr4w2"]
+[ext_resource type="Texture2D" uid="uid://byjrskd0rrpkg" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-5.png" id="17_2fq1i"]
+[ext_resource type="Texture2D" uid="uid://untw0vkqrdwu" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-6.png" id="18_5hnst"]
+[ext_resource type="Texture2D" uid="uid://bucqb7aq4s03j" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-7.png" id="19_r4188"]
+[ext_resource type="Texture2D" uid="uid://bmon0le2ikc6v" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/run/run-8.png" id="20_344yc"]
+[ext_resource type="Texture2D" uid="uid://bshk262gehw41" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/shot/shot-1.png" id="21_6a3no"]
+[ext_resource type="Texture2D" uid="uid://be2gn0vnfa07x" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/shot/shot-2.png" id="22_008rn"]
+[ext_resource type="Texture2D" uid="uid://colx42odr8jb8" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/shot/shot-3.png" id="23_tew2j"]
+[ext_resource type="Texture2D" uid="uid://c5ijth4xdrl5" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/shot/shot-4.png" id="24_fkypn"]
+[ext_resource type="Texture2D" uid="uid://devyx4dpygcq2" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-1.png" id="25_loeus"]
+[ext_resource type="Texture2D" uid="uid://blxw1dxg3ei3j" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-2.png" id="26_oasrl"]
+[ext_resource type="Texture2D" uid="uid://b2fo2dotp4824" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-3.png" id="27_p7aa5"]
+[ext_resource type="Texture2D" uid="uid://d28mtyhggedpk" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-4.png" id="28_cyc4e"]
+[ext_resource type="Texture2D" uid="uid://cmbdaqp64mn4v" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-5.png" id="29_qg2nt"]
+[ext_resource type="Texture2D" uid="uid://he1e8a3n18ef" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-6.png" id="30_t7268"]
+[ext_resource type="Texture2D" uid="uid://lyofpduyas6k" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-7.png" id="31_chem0"]
+[ext_resource type="Texture2D" uid="uid://ctg36mew60bet" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-8.png" id="32_uotgp"]
+[ext_resource type="Texture2D" uid="uid://jd6b6s4i0sbs" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-9.png" id="33_attpv"]
+[ext_resource type="Texture2D" uid="uid://c02g3ijvwd82a" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-10.png" id="34_em3ic"]
+[ext_resource type="Texture2D" uid="uid://cvg0aqyhqy0ic" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-11.png" id="35_u514l"]
+[ext_resource type="Texture2D" uid="uid://b8b7rwmi2kley" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-12.png" id="36_mtclu"]
+[ext_resource type="Texture2D" uid="uid://bcw8ysnus01xk" path="res://assets/sunnyland winter forest files/sunnyland_winter_forest/SPRITES/player/walk/walk-13.png" id="37_vu0vc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ucufk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lw7xb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j4d0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nx85l")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_tue77")
@@ -24,7 +67,117 @@ animations = [{
 "texture": ExtResource("5_e7yfm")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_wiuo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0a7mf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2li2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_no1er")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_373hh")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_rpkd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_1v7bv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1vet3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_wr4w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2fq1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_5hnst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_r4188")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_344yc")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_6a3no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_008rn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_tew2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_fkypn")
+}],
+"loop": 0,
+"name": &"shot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_loeus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_oasrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_p7aa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_cyc4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_qg2nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_t7268")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_chem0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_uotgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_attpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_em3ic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_u514l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_mtclu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_vu0vc")
+}],
+"loop": 0,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -33,17 +186,17 @@ collision_layer = 2
 script = ExtResource("1_kjkj0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=43782387]
-position = Vector2(167, 50)
+position = Vector2(25, 19)
 shape = SubResource("CapsuleShape2D_ucufk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=10094487]
 texture_filter = 1
-position = Vector2(166, 40)
+position = Vector2(25, 11)
 scale = Vector2(1, 1.0111111)
 sprite_frames = SubResource("SpriteFrames_lw7xb")
+animation = &"run"
+autoplay = "idle"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1864904207]
-remote_path = NodePath("Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="RemoteTransform2D" unique_id=1783381462]
-position = Vector2(168, 53)
+update_rotation = false
+update_scale = false
