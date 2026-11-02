@@ -1,5 +1,10 @@
-
 extends CharacterBody2D
+
+# ==========================================
+# ESTADOS (animacoes)
+# ==========================================
+enum State { IDLE, RUN, JUMP, FALL, DASH, HURT, DIE }
+var current_state: State = State.IDLE
 
 # ==========================================
 # MOVIMENTO
@@ -16,7 +21,7 @@ const MAX_JUMPS := 2
 const JUMP_CUT := 0.5
 const COYOTE_TIME := 0.1
 const JUMP_BUFFER_TIME := 0.1
-enum state{}
+
 # ==========================================
 # PAREDE
 # ==========================================
@@ -45,7 +50,7 @@ var foot_offset := 10.0
 var jumps_left := MAX_JUMPS
 var coyote_timer := 0.0
 var jump_buffer_timer := 0.0
-var main_camera: Camera2D = null
+
 var dash_timer := 0.0
 var dash_cooldown_timer := 0.0
 var dash_direction := 1.0
@@ -60,35 +65,34 @@ var ghosts: Array = []
 var dust: Array = []
 var shake := 0.0
 
-# Sprite
-var sprite: Node2D = null
+# Sprite (achado automaticamente, qualquer nome)
+var anim: AnimatedSprite2D = null
 var sprite_base_scale := Vector2.ONE
 
-# Camera (igual ao video)
-@onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D
+# Camera
+var main_camera: Camera2D = null
 var camera_original_offset := Vector2.ZERO
 
 
 func _ready() -> void:
 	randomize()
 
-	# Camera: liga o RemoteTransform2D na camera do grupo (aula do video)
+	# Procura o AnimatedSprite2D filho do player, com qualquer nome
+	for child in get_children():
+		if child is AnimatedSprite2D:
+			anim = child
+			sprite_base_scale = anim.scale.abs()
+			break
+
+	# Camera: o script move a camera direto
 	var camera = get_tree().get_first_node_in_group("main_camera")
 	if camera:
-		remote_transform_2d.remote_path = camera.get_path()
+		main_camera = camera
 		camera_original_offset = camera.offset
+		camera.global_position = global_position
 		print("CAMERA OK: ", camera.get_path())
 	else:
 		push_warning("CAMERA NAO ACHADA: nenhum no no grupo main_camera")
-		print("CAMERA NAO ACHADA")
-		
-
-	# Procura o sprite (Sprite2D ou AnimatedSprite2D)
-	for child in get_children():
-		if child is Sprite2D or child is AnimatedSprite2D:
-			sprite = child
-			sprite_base_scale = sprite.scale.abs()
-			break
 
 
 func _physics_process(delta: float) -> void:
@@ -127,6 +131,8 @@ func _physics_process(delta: float) -> void:
 		})
 
 		move_and_slide()
+		update_state(direction)
+		play_state_animation()
 		_update_effects(delta)
 		return
 
@@ -194,7 +200,65 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and abs(velocity.x) > SPEED * 0.8 and randf() < 0.25:
 		_spawn_dust(global_position + Vector2(-facing * 12, foot_offset), 1)
 
+	# ---------- ANIMACAO ----------
+	update_state(direction)
+	play_state_animation()
+
 	_update_effects(delta)
+
+
+# ==========================================
+# ESTADOS E ANIMACOES
+# ==========================================
+func update_state(direction: float) -> void:
+	if current_state == State.DIE or current_state == State.HURT:
+		return
+
+	if dash_timer > 0.0:
+		current_state = State.DASH
+	elif not is_on_floor():
+		if velocity.y < 0.0:
+			current_state = State.JUMP
+		else:
+			current_state = State.FALL
+	elif direction != 0.0:
+		current_state = State.RUN
+	else:
+		current_state = State.IDLE
+
+
+func play_state_animation() -> void:
+	match current_state:
+		State.IDLE:
+			_play("idle")
+		State.RUN:
+			_play("run")
+		State.JUMP:
+			_play("jump")
+		State.FALL:
+			_play("fall", "jump")
+		State.DASH:
+			_play("dash", "run")
+		State.HURT:
+			_play("hurt")
+		State.DIE:
+			_play("die")
+
+
+# Toca a animacao se ela existir (senao tenta a reserva, senao nao faz nada)
+func _play(nome: String, reserva: String = "") -> void:
+	if not anim or not anim.sprite_frames:
+		return
+
+	var alvo := nome
+	if not anim.sprite_frames.has_animation(alvo):
+		alvo = reserva
+
+	if alvo == "" or not anim.sprite_frames.has_animation(alvo):
+		return
+
+	if anim.animation != alvo or not anim.is_playing():
+		anim.play(alvo)
 
 
 # ==========================================
@@ -222,6 +286,10 @@ func _spawn_dust(pos: Vector2, amount: int) -> void:
 # ATUALIZAR EFEITOS
 # ==========================================
 func _update_effects(delta: float) -> void:
+	# Camera presa no dragao
+	if main_camera:
+		main_camera.global_position = global_position
+
 	# Squash e stretch
 	body_scale = body_scale.lerp(Vector2.ONE, minf(12.0 * delta, 1.0))
 
@@ -229,10 +297,10 @@ func _update_effects(delta: float) -> void:
 		var stretch := clampf(abs(velocity.y) / 1500.0, 0.0, 0.25)
 		body_scale = body_scale.lerp(Vector2(1.0 - stretch, 1.0 + stretch), minf(6.0 * delta, 1.0))
 
-	# Aplica no sprite
-	if sprite:
+	# Vira o sprite pelo scale (sem flip_h, pra nao virar duas vezes)
+	if anim:
 		var lado := facing if SPRITE_OLHA_PRA_DIREITA else -facing
-		sprite.scale = Vector2(
+		anim.scale = Vector2(
 			lado * body_scale.x * sprite_base_scale.x,
 			body_scale.y * sprite_base_scale.y
 		)
@@ -252,9 +320,8 @@ func _update_effects(delta: float) -> void:
 	# Camera shake
 	shake = move_toward(shake, 0.0, 30.0 * delta)
 
-	var cam := get_viewport().get_camera_2d()
-	if cam:
-		cam.offset = camera_original_offset + Vector2(
+	if main_camera:
+		main_camera.offset = camera_original_offset + Vector2(
 			randf_range(-shake, shake),
 			randf_range(-shake, shake)
 		)
